@@ -7,10 +7,14 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
 
+    //State Tracking
+    public List<int> keyIdsObtained;
+
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
+        keyIdsObtained = new List<int>();
     }
 
     void Update()
