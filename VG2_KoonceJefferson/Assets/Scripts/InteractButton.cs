@@ -18,6 +18,14 @@ public class InteractButton : MonoBehaviour
                 print("Interacting with your door!");
                 targetDoor.Interact(gameObject);
             }
+
+            //Lights
+            InteractLight targetLight = interactionTarget.GetComponent<InteractLight>();
+            if (targetLight != null)
+            {
+                print("Interacting with your door!");
+                targetLight.Interact();
+            }
         }
     }
 }
