@@ -6,13 +6,24 @@ public class Door : MonoBehaviour
 {
     Animator animator;
 
+    public GameObject requiredSender;
+
     void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    public void Interact()
+    public void Interact(GameObject sender = null)
     {
-        animator.SetTrigger("Open");
+        bool shouldOpen = false;
+
+        if (!requiredSender)
+        {
+            shouldOpen = true;
+        } else if (requiredSender == sender) {
+            shouldOpen = true;
+        }
+
+        if(shouldOpen) animator.SetTrigger("Open");
     }
 }

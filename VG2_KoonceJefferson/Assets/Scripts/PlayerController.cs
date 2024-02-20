@@ -35,6 +35,13 @@ public class PlayerController : MonoBehaviour
                     {
                         targetDoor.Interact();
                     }
+
+                    //Button interaction
+                    InteractButton targetButton = hit.transform.GetComponent<InteractButton>();
+                    if (targetButton)
+                    {
+                        targetButton.Interact();
+                    }
                 }
             }
         }
