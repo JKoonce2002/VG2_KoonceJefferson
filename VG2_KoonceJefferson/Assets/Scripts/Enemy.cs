@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     //Outlets
     NavMeshAgent navAgent;
+    Animator animator;
 
     //Config
     public Transform target;
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         navAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -37,25 +39,28 @@ public class Enemy : MonoBehaviour
                     patrolIndex = 0;
                 }
             }
+
         }
 
         if (priorityTarget)
         {
             float priorityTargetDistance = Vector3.Distance(transform.position, priorityTarget.position);
 
-            if(priorityTargetDistance <= chaseDistance)
+            /*if(priorityTargetDistance <= chaseDistance)
             {
                 target = priorityTarget;
                 GetComponent<Renderer>().material.color = Color.red;
             } else
             {
                 GetComponent<Renderer>().material.color = Color.white;
-            }
+            }*/
         }
 
         if (target)
         {
             navAgent.SetDestination(target.position);
         }
+
+        animator.SetFloat("velocity", navAgent.velocity.magnitude);
     }
 }
