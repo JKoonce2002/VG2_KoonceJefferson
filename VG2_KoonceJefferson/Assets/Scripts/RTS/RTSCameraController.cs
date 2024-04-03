@@ -20,6 +20,11 @@ public class RTSCameraController : MonoBehaviour
 
     void Update()
     {
-        transform.position += movement * moveSpeed * Time.deltaTime;
+        Vector3 checkPos = transform.position + movement * moveSpeed * moveSpeed * Time.deltaTime;
+        checkPos += new Vector3(0, 10f, 0);
+
+        bool onGround = Physics.Raycast(checkPos, Vector3.down, Mathf.Infinity, LayerMask.GetMask("Ground"));
+
+        if (onGround) transform.position += movement * moveSpeed * Time.deltaTime;
     }
 }
